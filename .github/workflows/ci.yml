@@ -1,0 +1,15 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup CMake
+        uses: lukeosh/setup-cmake@v4
+      - name: Configure
+        run: mkdir build && cd build && cmake ..
+      - name: Build
+        run: cmake --build build --config Release
